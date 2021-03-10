@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class PriorityPetriTransition extends PetriTransition{
+public class PriorityPetriTransition extends Transition{
     int priority;
 
-    public PriorityPetriTransition(int priority, int cost_enter, int cost_exit, ArrayList<Location> from, ArrayList<Location> to){
-        super(cost_enter, cost_exit, from, to);
+    public PriorityPetriTransition(int priority, ArrayList<Link> links){
+        super(links);
         this.priority = priority;
     }
 

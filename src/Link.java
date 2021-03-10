@@ -12,6 +12,6 @@ public class Link {
     public Link(Node to, Node from, int weight){
         this.to = to;
         this.from = from;
-        this.weight = weight
+        this.weight = weight;
     }
 }

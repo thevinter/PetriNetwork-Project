@@ -9,17 +9,6 @@ public class Network {
     }
 
     /**
-     * This allows to add a Location the network if the user already has a Location object and a list of incoming and outgoing Transitions
-     * @param l The Location object
-     * @param from The incoming Transition nodes
-     * @param to The outgoing Transition nodes
-     */
-    public void addLocation(Location l, ArrayList<Transition> from, ArrayList<Transition> to){
-        l.addLinks(from, to);
-        nodes.add(l);
-    }
-
-    /**
      * This allows to add a Location to the Network without having the Transition and using integer IDs for the connections
      * @param from The list of incoming Transition IDs
      * @param to The list of outgoing Transition IDs
@@ -29,10 +18,8 @@ public class Network {
         for(Integer i : from){
             Node n = findNode(i);
             if(n == null){
-                Transition t = createTransition(); //Ths might be confusing, if the id doesnt exist we create one.
-                t.addTo(l); //We set the outgoing link from the Transition to the Location (since this id was supposed to be an incoming Transition)
-                l.addFrom(t); //We add an incoming link from the Location to the Transition (since this id was supposed to be an incoming Transition)
-                                //https://i.imgur.com/qX7fM0y.png for explanation
+                System.out.println("The selected id does not exist");
+                //TODO: Throw an error
             }
             else if(n instanceof Location){
                 System.out.println("A location can't be connected to a location");
@@ -45,9 +32,8 @@ public class Network {
         for(Integer i : to){
             Node n = findNode(i);
             if(n == null){
-                Transition t = createTransition();
-                t.addFrom(l);
-                l.addTo(t);
+                System.out.println("The selected id does not exist");
+                //TODO: Throw an error
             }
             else if(n instanceof Location){
                 System.out.println("A location can't be connected to a location");
@@ -60,14 +46,11 @@ public class Network {
     }
 
     /**
-     * This adds a transition to the Network if we have everything we need
-     * @param t The transition we want to add
-     * @param from The incoming Locations
-     * @param to The outgoing locations
+     * This adds a Node to the Network if we have everything we need
+     * @param n The Transition or the Location we want to add
      */
-    public void addTransition(Transition t, ArrayList<Location> from, ArrayList<Location> to){
-        t.addLinks(from, to);
-        nodes.add(t);
+    public void addNode(Node n){
+        nodes.add(n);
     }
 
     /**
@@ -80,9 +63,8 @@ public class Network {
         for(Integer i : from){
             Node n = findNode(i);
             if(n == null){
-                Location l = createLocation();
-                l.addTo(t);
-                t.addFrom(l);
+                System.out.println("The selected id does not exist");
+                //TODO: Throw an error
             }
             else if(n instanceof Transition){
                 System.out.println("A transition can't be connected to a transition");
@@ -95,9 +77,8 @@ public class Network {
         for(Integer i : to){
             Node n = findNode(i);
             if(n == null){
-                Location l = createLocation();
-                l.addFrom(t);
-                t.addTo(l);
+                System.out.println("The selected id does not exist");
+                //TODO: Throw an error
             }
             else if(n instanceof Transition){
                 System.out.println("A transition can't be connected to a transition");
@@ -114,7 +95,7 @@ public class Network {
      * @return A new transition
      */
     public Transition createTransition(){
-        System.out.println("The following transition doesn't exist. Do you want to create one?");
+        System.out.println("Do you want to create a Transition?");
         //TODO: Implement scanner and choice
         return new Transition();
     }
@@ -124,7 +105,7 @@ public class Network {
      * @return A new location
      */
     public Location createLocation(){
-        System.out.println("The following location doesn't exist. Do you want to create one?");
+        System.out.println("Do you want to create a Transition?");
         //TODO: Implement scanner and choice
         return new Location();
     }
