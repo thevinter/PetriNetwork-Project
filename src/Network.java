@@ -18,9 +18,10 @@ public class Network {
         for(Integer i : from){
             Node n = findNode(i);
             if(n == null){
-                Transition t = createTransition();
-                t.addTo(l);
-                l.addFrom(t);
+                Transition t = createTransition(); //Ths might be confusing, if the id doesnt exist we create one.
+                t.addTo(l); //We set the outgoing link from the Transition to the Location (since this id was supposed to be an incoming Transition)
+                l.addFrom(t); //We add an incoming link from the Location to the Transition (since this id was supposed to be an incoming Transition)
+                                //https://i.imgur.com/qX7fM0y.png for explanation
             }
             else if(n instanceof Location){
                 System.out.println("A location can't be connected to a location");
