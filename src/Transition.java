@@ -11,14 +11,10 @@ public class Transition extends  Node{
     }
 
     public void addFrom(Location loc){
-        Link l = new Link(this, loc);
-        links.add(l);
-        loc.links.add(l);
+        super.addOrigin(loc);
     }
 
     public void addTo(Location loc){
-        Link l = new Link(loc, this);
-        links.add(l);
-        loc.links.add(l);
+        super.addDestination(loc);
     }
 }

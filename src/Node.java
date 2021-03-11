@@ -26,9 +26,13 @@ public class Node {
         return links.size() > 0;
     }
 
-    public  void addLink(Node to, Node from){
-        //TODO: Throw an exception if neither "To" or "From" are this node;
-        Link l = new Link(to, from);
+    public void addOrigin(Node from){
+        Link l = new Link(this, from);
+        links.add(l);
+    }
+
+    public void addDestination(Node to){
+        Link l = new Link(to, this);
         links.add(l);
     }
 
