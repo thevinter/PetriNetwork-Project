@@ -14,4 +14,9 @@ public class Link {
         this.from = from;
         this.weight = weight;
     }
+    
+    public Node getDestination(){
+    	return to;
+    }
+    
 }

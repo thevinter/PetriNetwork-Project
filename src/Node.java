@@ -39,4 +39,11 @@ public class Node {
     public int getId(){
         return id;
     }
+    
+    public ArrayList<Node> getDestinations(){
+    	ArrayList<Node> n = new ArrayList<>();
+    	for(Link l: links)n.add(l.getDestination());
+    	return n;
+    }
+    
 }

@@ -2,11 +2,30 @@ import java.util.ArrayList;
 
 public class Network {
     ArrayList<Node> nodes;
-
+    ArrayList<Integer> checkedNodes = new ArrayList<>();
+    /**
+     * 
+     * @return
+     */
     public boolean checkValidity(){
         //TODO: Checks Validity of the network
+        DFS(nodes.get(0));
+    	for(Node n : nodes) {
+    		if(!checkedNodes.contains(n.getId()))return false;
+    	}
         return true;
     }
+    /**
+     * Depth First Search algorithm Implementation
+     * @param n0
+     */
+    public void DFS(Node n0){
+    	for(Node n : n0.getDestinations()){
+    		if(!checkedNodes.contains(n.getId()))DFS(n);
+    		checkedNodes.add(n.getId());
+    	}	
+    }
+  
 
     /**
      * This allows to add a Location to the Network without having the Transition and using integer IDs for the connections
