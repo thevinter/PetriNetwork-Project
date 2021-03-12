@@ -8,7 +8,7 @@ public class Network {
      * @return
      */
     public boolean checkValidity(){
-        //TODO: Checks Validity of the network
+        checkedNodes.add(nodes.get(0).getId());
         DFS(nodes.get(0));
     	for(Node n : nodes) {
     		if(!checkedNodes.contains(n.getId()))return false;
