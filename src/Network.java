@@ -52,10 +52,11 @@ public class Network {
      */
     public void DFS(Node n0){
     	checkedNodes.add(n0.getId());
-    	for(Node n : n0.getDestinations()){
-    		if(!checkedNodes.contains(n.getId()))DFS(n);
-    		checkedNodes.add(n.getId());
-    	}	
+    	if(!n0.getDestinations().isEmpty()) {
+    		for(Node n : n0.getDestinations()){
+    			if(!checkedNodes.contains(n.getId()))DFS(n);
+    		}
+    	}
     }
   
 
