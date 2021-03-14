@@ -40,7 +40,6 @@ public class Network {
      * @return
      */
     public boolean checkValidity(){
-        checkedNodes.add(nodes.get(0).getId());
         DFS(nodes.get(0));
     	for(Node n : nodes) {
     		if(!checkedNodes.contains(n.getId()))return false;
@@ -52,6 +51,7 @@ public class Network {
      * @param n0
      */
     public void DFS(Node n0){
+    	checkedNodes.add(n0.getId());
     	for(Node n : n0.getDestinations()){
     		if(!checkedNodes.contains(n.getId()))DFS(n);
     		checkedNodes.add(n.getId());
