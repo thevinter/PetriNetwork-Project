@@ -12,6 +12,8 @@ public class Menu {
     private static final String CHOOSE_NETWORK_ERROR = "You must select a network to modify first";
     private static final String CHOOSE_TRANSITION = "Choose a Transition you want this Location to originate from";
     private static final String CHOOSE_LOCATION = "Choose a Location you want this Transition to originate from";
+    private static final String CREATION_SUCCESS = "The network was created successfully";
+    private static final String NETWORK_CHOICE_SUCCESS = "The choice was successful. Your current network is: ";
 
 
     ArrayList<Network> networks;
@@ -23,7 +25,7 @@ public class Menu {
         sc = new Scanner(System.in);
     }
 
-    void StartMenu() {
+    void startMenu() {
         boolean isRunning = true;
         int choice = -1;
         System.out.println(NETWORK_MENU_TEXT);
@@ -136,9 +138,10 @@ public class Menu {
     public void createNetwork(){
         String name;
         System.out.println(NAME_NETWORK);
-        name = sc.nextLine();
+        name = sc.next();
         Network n = new Network(name);
         networks.add(n);
+        System.out.println(CREATION_SUCCESS);
     }
 
     public void chooseNetwork(){
@@ -150,6 +153,7 @@ public class Menu {
                 i = sc.nextInt();
             }
             currentNetwork = networks.get(0);
+            System.out.println(NETWORK_CHOICE_SUCCESS + currentNetwork.getName());
         }
         else{
             System.out.println(EMPTY_NETWORKS);
