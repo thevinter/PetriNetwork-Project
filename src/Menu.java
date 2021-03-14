@@ -14,6 +14,7 @@ public class Menu {
     private static final String CHOOSE_LOCATION = "Choose a Location you want this Transition to originate from";
     private static final String CREATION_SUCCESS = "The network was created successfully";
     private static final String NETWORK_CHOICE_SUCCESS = "The choice was successful. Your current network is: ";
+    private static final String ADD_SUCCESS = "The node was successfully added!";
 
 
     ArrayList<Network> networks;
@@ -48,6 +49,9 @@ public class Menu {
                 case(5):
                     System.out.println(NETWORK_MENU_TEXT);
                     break;
+                case(0):
+                    isRunning=false;
+                    break;
                 default:
                     System.out.println(WRONG_CHOICE_ERROR);
                     break;
@@ -74,6 +78,10 @@ public class Menu {
                 case(4):
                     System.out.println(NODES_MENU_TEXT);
                     break;
+                case(0):
+                    isRunning=false;
+                    System.out.println(NETWORK_MENU_TEXT);
+                    break;
                 default:
                     System.out.println(WRONG_CHOICE_ERROR);
                     break;
@@ -84,7 +92,7 @@ public class Menu {
     public void addLocation(){
         Location l = new Location();
         ArrayList<Transition> transitions = currentNetwork.getTransitions();
-        int i = 0;
+        int i = 1;
         System.out.println(CHOOSE_TRANSITION);
         for(Transition t : transitions){
             System.out.println(i+") Transition no. "+t.getId());
@@ -92,18 +100,19 @@ public class Menu {
         }
         System.out.println("0) Add standalone node");
         int c = sc.nextInt();
-        while (c < 0 || c >= transitions.size()) {
+        while (c < 0 || c > transitions.size()) {
             System.out.println(WRONG_CHOICE_ERROR);
             c = sc.nextInt();
         }
         if(c!=0) l.addFrom(transitions.get(c-1));
         currentNetwork.addNode(l);
+        System.out.println(ADD_SUCCESS);
     }
 
     public void addTransition(){
         Transition t = new Transition();
         ArrayList<Location> locations = currentNetwork.getLocations();
-        int i = 0;
+        int i = 1;
         System.out.println(CHOOSE_LOCATION);
         for(Location l : locations){
             System.out.println(i+") Location no. "+l.getId());
@@ -111,7 +120,7 @@ public class Menu {
         }
         System.out.println("0) Add standalone node");
         int c = sc.nextInt();
-        while (c < 0 || c >= locations.size()) {
+        while (c < 0 || c > locations.size()) {
             System.out.println(WRONG_CHOICE_ERROR);
             c = sc.nextInt();
         }
