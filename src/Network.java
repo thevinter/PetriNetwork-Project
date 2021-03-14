@@ -1,8 +1,40 @@
 import java.util.ArrayList;
 
 public class Network {
+    String name;
     ArrayList<Node> nodes;
     ArrayList<Integer> checkedNodes = new ArrayList<>();
+
+    public Network(String name){
+        this.name = name;
+        nodes = new ArrayList<>();
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public ArrayList<Node> getNodes(){
+        return nodes;
+    }
+
+    public ArrayList<Transition> getTransitions(){
+        ArrayList<Transition> temp = new ArrayList<>();
+        for(Node n : nodes){
+            if(n instanceof Transition) temp.add((Transition) n);
+        }
+        return temp;
+    }
+
+    public ArrayList<Location> getLocations(){
+        ArrayList<Location> temp = new ArrayList<>();
+        for(Node n : nodes){
+            if(n instanceof Location) temp.add((Location) n);
+        }
+        return temp;
+    }
+
+
     /**
      * 
      * @return

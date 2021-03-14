@@ -28,11 +28,13 @@ public class Node {
 
     public void addOrigin(Node from){
         Link l = new Link(this, from);
+        l.setStrength();
         links.add(l);
     }
 
     public void addDestination(Node to){
         Link l = new Link(to, this);
+        l.setStrength();
         links.add(l);
     }
 
@@ -44,6 +46,12 @@ public class Node {
     	ArrayList<Node> n = new ArrayList<>();
     	for(Link l: links)n.add(l.getDestination());
     	return n;
+    }
+
+    public void printLinks(){
+        for(Link l : links){
+            System.out.println("Node no. " + this.id + " -- " +l.getStrength() + "-->" + l.getDestination());
+        }
     }
     
 }
