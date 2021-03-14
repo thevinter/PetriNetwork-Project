@@ -20,6 +20,7 @@ public class Link {
     public Node getDestination(){
     	return to;
     }
+    public Node getFrom() {return from;}
 
     public int getStrength() { return strength; }
     public void setStrength(){
