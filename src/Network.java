@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.lang.Class;
 
 public class Network {
     String name;
@@ -35,9 +36,8 @@ public class Network {
         return temp;
     }
 
-
     /**
-     * 
+     * Check that the network is connected
      * @return
      */
     public boolean checkValidity(){
@@ -47,6 +47,7 @@ public class Network {
     	}
         return true;
     }
+    
     /**
      * Depth First Search algorithm Implementation
      * @param n0
@@ -59,8 +60,26 @@ public class Network {
     		}
     	}
     }
-  
+   /**
+    * Check the validity of all the links 
+    * @return
+    */
+    public boolean connectionsValidity() {
+    	for(Node n: nodes) {
+    		if(!n.getDestinations().isEmpty()) {
+    			for(Node p: n.getDestinations()) {
+    				if(checkCouple(n, p))return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
 
+    public boolean checkCouple(Node n, Node p) {
+    	if(n instanceof Location)return p instanceof Transition;
+    	else return p instanceof Location;
+    }
+    
     /**
      * This allows to add a Location to the Network without having the Transition and using integer IDs for the connections
      * @param from The list of incoming Transition IDs
