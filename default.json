@@ -1,0 +1,27 @@
+{
+  "Networks" : [ {
+    "name" : "gucci",
+    "locations" : [ {
+      "id" : 1
+    }, {
+      "id" : 2
+    }, {
+      "id" : 3
+    }, {
+      "id" : 4
+    } ],
+    "transitions" : [ {
+      "id" : 0,
+      "in" : [ {
+        "node" : 1
+      }, {
+        "node" : 3
+      } ],
+      "out" : [ {
+        "node" : 2
+      }, {
+        "node" : 4
+      } ]
+    } ]
+  } ]
+}
