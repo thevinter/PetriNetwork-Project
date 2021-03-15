@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.lang.Class;
 
 public class Network {
     String name;
