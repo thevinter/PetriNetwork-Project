@@ -50,7 +50,7 @@ public class Node {
 
     public void printLinks(){
         for(Link l : links){
-            System.out.println("Node no. " + this.id + " -- " +l.getStrength() + "-->" + l.getDestination());
+            System.out.println("Node no. " + this.id + " -- " +l.getStrength() + "-->" + " Node no. " + l.getDestination().id);
         }
     }
     
