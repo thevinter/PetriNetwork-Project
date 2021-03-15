@@ -6,7 +6,7 @@ public class Menu {
     private static final String NETWORK_MENU_TEXT = "Make a choice:\n1) View available networks\n2) Create a network\n3) Choose a network\n4) Modify the selected" +
                                                     " network\n5)Print options\n\n0) Exit";
     private static final String NODES_MENU_TEXT = "Make a choice:\n1) Add a location\n2) Add a transition\n3) Print network\n4) Print options\n\n\n0) Back";
-    private static final String WRONG_CHOICE_ERROR = "The number you've entered is not valid. Please choose again";
+    private static final String WRONG_CHOICE_ERROR = "Invalid input. Please choose again";
     private static final String EMPTY_NETWORKS = "There are no available networks. Create one first";
     private static final String NAME_NETWORK = "Select a name for the network";
     private static final String CHOOSE_NETWORK_ERROR = "You must select a network to modify first";
@@ -31,7 +31,12 @@ public class Menu {
         int choice = -1;
         System.out.println(NETWORK_MENU_TEXT);
         while (isRunning){
-            choice = sc.nextInt();
+        	try {
+        		choice = sc.nextInt();
+        	}
+        	catch(Exception e) {
+        		choice = -1;
+        	}
             switch (choice){
                 case(1):
                     printNetworks();
@@ -64,7 +69,12 @@ public class Menu {
         int choice = -1;
         System.out.println(NODES_MENU_TEXT);
         while(isRunning){
-            choice = sc.nextInt();
+        	try {
+            	choice = sc.nextInt();
+        	}
+        	catch(Exception e) {
+        		choice = -1;
+        	}
             switch (choice){
                 case(1):
                     addLocation();
