@@ -15,7 +15,7 @@ public class Menu {
     private static final String CREATION_SUCCESS = "The network was created successfully";
     private static final String NETWORK_CHOICE_SUCCESS = "The choice was successful. Your current network is: ";
     private static final String ADD_SUCCESS = "The node was successfully added!";
-
+    private static final String CHOOSE_CURRENT_NETWORK = "Do you wish to select the network you currently created as the current network? [yn]";
 
     ArrayList<Network> networks;
     Network currentNetwork;
@@ -159,8 +159,19 @@ public class Menu {
         System.out.println(NAME_NETWORK);
         name = sc.next();
         Network n = new Network(name);
+        currentNetwork = n;
+        addLocation();
+        addTransition();
         networks.add(n);
         System.out.println(CREATION_SUCCESS);
+        System.out.println(CHOOSE_CURRENT_NETWORK);
+        name = sc.next().toUpperCase();
+        while(name.compareTo("Y") != 0 && name.compareTo("N") != 0){
+            System.out.println(WRONG_CHOICE_ERROR);
+            name = sc.next().toUpperCase();
+        }
+        if(name.compareTo("N") == 0) currentNetwork=null;
+        else if(name.compareTo("Y") == 0) System.out.println(NETWORK_CHOICE_SUCCESS + currentNetwork.getName());
     }
 
     public void chooseNetwork(){
