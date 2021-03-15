@@ -68,7 +68,7 @@ public class Network {
     	for(Node n: nodes) {
     		if(!n.getDestinations().isEmpty()) {
     			for(Node p: n.getDestinations()) {
-    				if(checkCouple(n, p))return false;
+    				if(!checkCouple(n, p))return false;
     			}
     		}
     	}
