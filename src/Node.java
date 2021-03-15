@@ -28,13 +28,13 @@ public class Node {
 
     public void addOrigin(Node from){
         Link l = new Link(this, from);
-        l.setStrength();
+        //l.setStrength();
         links.add(l);
     }
 
     public void addDestination(Node to){
         Link l = new Link(to, this);
-        l.setStrength();
+        //l.setStrength();
         links.add(l);
     }
 
