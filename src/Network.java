@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Network {
     String name;
     ArrayList<Node> nodes;
     ArrayList<Integer> checkedNodes = new ArrayList<>();
-
+    private static final String INVALID_INPUT = "Invalid input, try again";
     public Network(String name){
         this.name = name;
         nodes = new ArrayList<>();
@@ -40,7 +41,6 @@ public class Network {
      * @return
      */
     public boolean checkValidity(){
-        checkedNodes.add(nodes.get(0).getId());
         DFS(nodes.get(0));
     	for(Node n : nodes) {
     		if(!checkedNodes.contains(n.getId()))return false;
@@ -52,10 +52,12 @@ public class Network {
      * @param n0
      */
     public void DFS(Node n0){
-    	for(Node n : n0.getDestinations()){
-    		if(!checkedNodes.contains(n.getId()))DFS(n);
-    		checkedNodes.add(n.getId());
-    	}	
+    	checkedNodes.add(n0.getId());
+    	if(!n0.getDestinations().isEmpty()){
+    		for(Node n : n0.getDestinations()){
+    			if(!checkedNodes.contains(n.getId()))DFS(n);
+    		}
+    	}
     }
   
 
@@ -146,8 +148,28 @@ public class Network {
      * @return A new transition
      */
     public Transition createTransition(){
+    	int i;
         System.out.println("Do you want to create a Transition?");
-        //TODO: Implement scanner and choice
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+        do {
+        	try(Scanner sc = new Scanner(System.in))	
+        	{
+        		i = sc.nextInt();
+        	}
+        	catch(Exception e){
+        		i = -1;
+        	}
+        	switch (i) {
+        		case(1):
+        			break;
+        		case(2):
+        			return null;
+        		default:
+        			System.out.println(INVALID_INPUT);
+        			break;
+        	}
+        }while(i != 1);	
         return new Transition();
     }
 
@@ -156,8 +178,28 @@ public class Network {
      * @return A new location
      */
     public Location createLocation(){
-        System.out.println("Do you want to create a Transition?");
-        //TODO: Implement scanner and choice
+    	int i;
+        System.out.println("Do you want to create a Location?");
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+        do {
+        	try(Scanner sc = new Scanner(System.in))	
+        	{
+        		i = sc.nextInt();
+        	}
+        	catch(Exception e){
+        		i = -1;
+        	}
+        	switch (i) {
+        		case(1):
+        			break;
+        		case(2):
+        			return null;
+        		default:
+        			System.out.println(INVALID_INPUT);
+        			break;
+        	}
+        }while(i != 1);
         return new Location();
     }
 
