@@ -101,6 +101,7 @@ public class Menu {
 
     public void addLocation(){
         Location l = new Location();
+        boolean check;
         ArrayList<Transition> transitions = currentNetwork.getTransitions();
         int i = 1;
         System.out.println(CHOOSE_TRANSITION);
@@ -109,18 +110,29 @@ public class Menu {
             i++;
         }
         System.out.println("0) Add standalone node");
-        int c = sc.nextInt();
-        while (c < 0 || c > transitions.size()) {
-            System.out.println(WRONG_CHOICE_ERROR);
-            c = sc.nextInt();
+        do {
+        	try {
+        		check = true;
+        		int c = sc.nextInt();
+        		while (c < 0 || c > transitions.size()) {
+        			System.out.println(WRONG_CHOICE_ERROR);
+        			c = sc.nextInt();
+        		}
+        		if(c!=0) l.addFrom(transitions.get(c-1));
+        		currentNetwork.addNode(l);
+        	}
+        	catch(Exception e) {
+        		check = false;
+        		System.out.println(WRONG_CHOICE_ERROR);
+        	}
         }
-        if(c!=0) l.addFrom(transitions.get(c-1));
-        currentNetwork.addNode(l);
+        while(check == false);
         System.out.println(ADD_SUCCESS);
     }
 
     public void addTransition(){
         Transition t = new Transition();
+        boolean check;
         ArrayList<Location> locations = currentNetwork.getLocations();
         int i = 1;
         System.out.println(CHOOSE_LOCATION);
@@ -129,13 +141,23 @@ public class Menu {
             i++;
         }
         System.out.println("0) Add standalone node");
-        int c = sc.nextInt();
-        while (c < 0 || c > locations.size()) {
-            System.out.println(WRONG_CHOICE_ERROR);
-            c = sc.nextInt();
+        do {
+        	try {
+        		check= true;
+        		int c = sc.nextInt();
+        		while (c < 0 || c > locations.size()) {
+        			System.out.println(WRONG_CHOICE_ERROR);
+        			c = sc.nextInt();
+        		}
+        		if(c!=0) t.addFrom(locations.get(c-1));
+        		currentNetwork.addNode(t);
+        	}
+        	catch(Exception e) {
+        		check = false;
+        		System.out.println(WRONG_CHOICE_ERROR);
+        	}
         }
-        if(c!=0) t.addFrom(locations.get(c-1));
-        currentNetwork.addNode(t);
+        while(check == false);
     }
 
     public void printNetwork(){
@@ -176,12 +198,24 @@ public class Menu {
 
     public void chooseNetwork(){
         if(networks.size() > 0) {
+        	boolean check;
             printNetworks();
-            int i = sc.nextInt();
-            while (i < 0 || i >= networks.size()) {
-                System.out.println(WRONG_CHOICE_ERROR);
-                i = sc.nextInt();
+            do {
+            	try {
+            		check = true;
+            		int i = sc.nextInt();
+            		while (i < 0 || i >= networks.size()) {
+                		System.out.println(WRONG_CHOICE_ERROR);
+                		i = sc.nextInt();
+            		}
+            	}	
+            	catch(Exception e){
+            		check = false;
+            		System.out.println(WRONG_CHOICE_ERROR);
+            	}
+            	
             }
+            while(check == false);
             currentNetwork = networks.get(0);
             System.out.println(NETWORK_CHOICE_SUCCESS + currentNetwork.getName());
         }
