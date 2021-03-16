@@ -16,4 +16,5 @@ public class Location extends  Node{
     public void addTo(Transition t){
         super.addDestination(t);
     }
+
 }

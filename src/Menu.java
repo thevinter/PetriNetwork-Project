@@ -17,14 +17,22 @@ public class Menu {
     private static final String ADD_SUCCESS = "The node was successfully added!";
 
 
+
     ArrayList<Network> networks;
     Network currentNetwork;
     Scanner sc;
+
     public Menu(){
         currentNetwork = null;
         networks=new ArrayList<>();
         sc = new Scanner(System.in);
     }
+    public Menu(ArrayList<Network> nets){
+        currentNetwork = null;
+        networks = nets;
+        sc = new Scanner(System.in);
+    }
+
 
     void startMenu() {
         boolean isRunning = true;
@@ -49,6 +57,9 @@ public class Menu {
                 case(5):
                     System.out.println(NETWORK_MENU_TEXT);
                     break;
+                case(6):
+                    NetworkSaver saver = new NetworkSaver(networks);
+                    saver.createDocument();
                 case(0):
                     isRunning=false;
                     break;

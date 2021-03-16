@@ -11,13 +11,14 @@ public class NetworkSaver {
 
 
 
-    private String activeDocument = "default";
-    private List<Network> networks;
+    private final String DEFAULTDOCUMENT = "default";
+    private ArrayList<Network> networks;
     private Network activeNet;
     private List<Location>  locations = new ArrayList<>();
     private List<Transition> transitions = new ArrayList<>();
 
     public NetworkSaver(ArrayList<Network> nets){
+
         networks = nets;
     }
 
@@ -33,7 +34,7 @@ public class NetworkSaver {
     public  void createDocument() {
 
         try {
-            JsonGenerator jsonGenerator = new JsonFactory().createGenerator(new FileOutputStream(activeDocument+".json"));
+            JsonGenerator jsonGenerator = new JsonFactory().createGenerator(new FileOutputStream(DEFAULTDOCUMENT+".json"));
 
             jsonGenerator.setPrettyPrinter(new DefaultPrettyPrinter());
 

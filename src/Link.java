@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class Link {
     private Node to;
@@ -23,15 +23,19 @@ public class Link {
     public Node getFrom() {return from;}
 
     public int getStrength() { return strength; }
-    public void setStrength(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Select the weight of the link");
-        int i = sc.nextInt();
-        while(i < 0){
-            i = sc.nextInt();
-            System.out.println("Please enter a positive value");
-        }
-        this.strength = i;
+
+    public void setStrength(int s) {
+        this.strength = s;
     }
+//    public void setStrength(){
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Select the weight of the link");
+//        int i = sc.nextInt();
+//        while(i < 0){
+//            i = sc.nextInt();
+//            System.out.println("Please enter a positive value");
+//        }
+//        this.strength = i;
+//    }
     
 }

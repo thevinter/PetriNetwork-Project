@@ -26,15 +26,25 @@ public class Node {
         return links.size() > 0;
     }
 
+    public void addOrigin(Node from,int s){
+        Link l = new Link(this, from);
+        l.setStrength(s);
+        links.add(l);
+    }
+
     public void addOrigin(Node from){
         Link l = new Link(this, from);
-        l.setStrength();
+        links.add(l);
+    }
+
+    public void addDestination(Node to,int s){
+        Link l = new Link(to, this);
+        l.setStrength(s);
         links.add(l);
     }
 
     public void addDestination(Node to){
         Link l = new Link(to, this);
-        l.setStrength();
         links.add(l);
     }
 
@@ -53,5 +63,6 @@ public class Node {
             System.out.println("Node no. " + this.id + " -- " +l.getStrength() + "-->" + l.getDestination());
         }
     }
-    
+
+    public void setId(int id){this.id = id;}
 }

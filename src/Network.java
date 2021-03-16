@@ -172,4 +172,6 @@ public class Network {
         }
         return null;
     }
+
+    public void setName(String name) {this.name = name;}
 }
