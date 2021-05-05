@@ -16,7 +16,8 @@ public class Menu {
     private static final String NETWORK_CHOICE_SUCCESS = "The choice was successful. Your current network is: ";
     private static final String ADD_SUCCESS = "The node was successfully added!";
     private static final String CHOOSE_CURRENT_NETWORK = "Do you wish to select the network you currently created as the current network? [yn]";
-
+    private static final String INVALID_NETWORK = "The current network have some issiues, fix them before continue";
+    
     ArrayList<Network> networks;
     Network currentNetwork;
     Scanner sc;
@@ -89,6 +90,10 @@ public class Menu {
                     System.out.println(NODES_MENU_TEXT);
                     break;
                 case(0):
+                	if(!currentNetwork.checkValidity()) {
+                		System.out.println(INVALID_NETWORK);
+                		break;
+                	}
                     isRunning=false;
                     System.out.println(NETWORK_MENU_TEXT);
                     break;
