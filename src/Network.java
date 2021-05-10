@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Network {
     String name;
     ArrayList<Node> nodes;
     ArrayList<Integer> checkedNodes = new ArrayList<>();
-
+    private static final String INVALID_INPUT = "Invalid input, try again";
     public Network(String name){
         this.name = name;
         nodes = new ArrayList<>();
@@ -34,31 +35,50 @@ public class Network {
         return temp;
     }
 
-
     /**
-     * 
+     * Check that the network is connected
      * @return
      */
     public boolean checkValidity(){
-        checkedNodes.add(nodes.get(0).getId());
         DFS(nodes.get(0));
     	for(Node n : nodes) {
     		if(!checkedNodes.contains(n.getId()))return false;
     	}
         return true;
     }
+    
     /**
      * Depth First Search algorithm Implementation
      * @param n0
      */
     public void DFS(Node n0){
-    	for(Node n : n0.getDestinations()){
-    		if(!checkedNodes.contains(n.getId()))DFS(n);
-    		checkedNodes.add(n.getId());
-    	}	
+    	checkedNodes.add(n0.getId());
+    	if(!n0.getDestinations().isEmpty()){
+    		for(Node n : n0.getDestinations()){
+    			if(!checkedNodes.contains(n.getId()))DFS(n);
+    		}
+    	}
     }
-  
+   /**
+    * Check the validity of all the links 
+    * @return
+    */
+    public boolean connectionsValidity() {
+    	for(Node n: nodes) {
+    		if(!n.getDestinations().isEmpty()) {
+    			for(Node p: n.getDestinations()) {
+    				if(!checkCouple(n, p))return false;
+    			}
+    		}
+    	}
+    	return true;
+    }
 
+    public boolean checkCouple(Node n, Node p) {
+    	if(n instanceof Location)return p instanceof Transition;
+    	else return p instanceof Location;
+    }
+    
     /**
      * This allows to add a Location to the Network without having the Transition and using integer IDs for the connections
      * @param from The list of incoming Transition IDs
@@ -146,8 +166,28 @@ public class Network {
      * @return A new transition
      */
     public Transition createTransition(){
+    	int i;
         System.out.println("Do you want to create a Transition?");
-        //TODO: Implement scanner and choice
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+        do {
+        	try(Scanner sc = new Scanner(System.in))	
+        	{
+        		i = sc.nextInt();
+        	}
+        	catch(Exception e){
+        		i = -1;
+        	}
+        	switch (i) {
+        		case(1):
+        			break;
+        		case(2):
+        			return null;
+        		default:
+        			System.out.println(INVALID_INPUT);
+        			break;
+        	}
+        }while(i != 1);	
         return new Transition();
     }
 
@@ -156,8 +196,28 @@ public class Network {
      * @return A new location
      */
     public Location createLocation(){
-        System.out.println("Do you want to create a Transition?");
-        //TODO: Implement scanner and choice
+    	int i;
+        System.out.println("Do you want to create a Location?");
+        System.out.println("1) Yes");
+        System.out.println("2) No");
+        do {
+        	try(Scanner sc = new Scanner(System.in))	
+        	{
+        		i = sc.nextInt();
+        	}
+        	catch(Exception e){
+        		i = -1;
+        	}
+        	switch (i) {
+        		case(1):
+        			break;
+        		case(2):
+        			return null;
+        		default:
+        			System.out.println(INVALID_INPUT);
+        			break;
+        	}
+        }while(i != 1);
         return new Location();
     }
 
